@@ -1,0 +1,293 @@
+/* Buttons ------------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--pill);
+  font-size: var(--t-ui);
+  line-height: 18px;
+  white-space: nowrap;
+  transition:
+    background-color 0.35s var(--ease-out),
+    color 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    transform 0.5s var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--primary {
+  background: var(--forest);
+  color: var(--mint);
+}
+.btn--primary:hover {
+  background: #0d2712;
+  color: #fff;
+}
+
+.btn--outline {
+  background: #fff;
+  color: var(--forest);
+  box-shadow: inset 0 0 0 1px var(--forest);
+}
+.btn--outline:hover {
+  background: var(--forest);
+  color: #fff;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: #fff;
+  box-shadow: inset 0 0 0 1px #fff;
+}
+.btn--ghost:hover {
+  background: #fff;
+  color: var(--forest);
+}
+
+.btn--white {
+  background: #fff;
+  color: var(--forest);
+}
+.btn--white:hover {
+  background: var(--forest);
+  color: #fff;
+}
+
+.btn--white.btn--teal {
+  color: var(--teal);
+}
+.btn--white.btn--teal:hover {
+  background: var(--teal);
+  color: #fff;
+}
+
+.btn--lg {
+  padding: 12px 16px;
+  font-size: var(--t-body);
+  line-height: 23px;
+}
+
+.btn--md {
+  font-size: var(--t-small);
+  line-height: 21px;
+}
+
+.btn__icon {
+  width: 18px;
+  height: 16px;
+  flex: none;
+  transition: transform 0.5s var(--ease-out);
+}
+.btn:hover .btn__icon {
+  transform: translateX(4px);
+}
+
+/* Glass card — orb image, heavy blur, grain (Figma: Mask group + Blur + Textures) */
+
+.glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper-cool);
+  color: var(--ink);
+}
+
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: -35%;
+  z-index: -2;
+  background-image: var(--orb);
+  background-size: var(--orb-size, cover);
+  background-position: var(--orb-pos, 50% 50%);
+  background-repeat: no-repeat;
+  filter: blur(var(--orb-blur, 44px)) saturate(1.05);
+  opacity: var(--orb-opacity, 0.85);
+  transform: scale(1.05) rotate(var(--orb-rot, 0deg));
+  transition: transform 1.2s var(--ease-out);
+}
+
+.glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--grain);
+  background-size: 240px 240px;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.glass:hover::before {
+  transform: scale(1.1) rotate(var(--orb-rot, 0deg));
+}
+
+.glass--pink {
+  --orb: url('/img/orbs-pink.jpg');
+  --orb-pos: 50% 0%;
+  --orb-opacity: 0.7;
+}
+.glass--green {
+  --orb: url('/img/orbs-green.jpg');
+  --orb-pos: 20% 70%;
+  --orb-rot: 60deg;
+}
+.glass--blue {
+  --orb: url('/img/orbs-blue.jpg');
+  --orb-pos: 70% 40%;
+  --orb-rot: -30deg;
+}
+.glass--base {
+  --orb: url('/img/orbs-base.jpg');
+  --orb-pos: 50% 60%;
+}
+
+/* Tag pills ----------------------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--pill);
+  font-size: var(--t-ui);
+  line-height: 18px;
+  white-space: nowrap;
+}
+.tag--outline {
+  box-shadow: inset 0 0 0 1px var(--plum);
+  color: var(--plum);
+}
+.tag--cream {
+  background: var(--cream);
+  color: var(--plum);
+}
+.tag--sage {
+  background: var(--sage-pill);
+  color: var(--forest);
+}
+.tag--teal {
+  background: var(--teal-pill);
+  color: var(--teal);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: var(--pill);
+  background: var(--cream);
+  color: var(--plum);
+  font-size: var(--t-ui);
+  line-height: 18px;
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+.chip:hover {
+  background: var(--plum);
+  color: #fff;
+}
+
+/* List rows — resources / under review / FAQ share this rhythm ------------ */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 8px;
+  border-bottom: 1px solid var(--line);
+  width: 100%;
+  text-align: left;
+  color: var(--ink);
+  transition: background-color 0.3s var(--ease-out);
+}
+
+.row:hover {
+  background: rgba(247, 245, 237, 0.55);
+}
+
+.row__main {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
+.row__title {
+  font-size: var(--t-lead);
+  line-height: 28px;
+}
+
+.row__arrow {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--mint);
+  transition: transform 0.5s var(--ease-out), color 0.3s var(--ease-out);
+}
+.row:hover .row__arrow {
+  transform: translate(3px, -3px);
+  color: var(--forest);
+}
+
+.row__index {
+  font-size: var(--t-body);
+  line-height: 1;
+  color: var(--plum);
+  min-width: 23px;
+}
+
+/* Section header block ---------------------------------------------------- */
+
+.sec-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.sec-head--center {
+  align-items: center;
+  text-align: center;
+}
+.sec-head .h2 {
+  margin-top: 0;
+}
+.sec-head .lead-in {
+  margin-top: 24px;
+}
+
+/* Input pill ---------------------------------------------------------------- */
+
+.input-pill {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 18px;
+  border-radius: var(--pill);
+  background: #fff;
+  color: var(--grey-600);
+  font-size: var(--t-small);
+  line-height: 32px;
+}
+.input-pill input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  color: var(--ink);
+}
+.input-pill input::placeholder {
+  color: var(--grey-600);
+}
