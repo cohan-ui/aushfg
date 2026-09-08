@@ -49,7 +49,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1.4, ease, delay: 0.5 }}
       >
-        <img src="/img/hero-room.jpg" alt="A single inpatient bedroom with a window to trees, a bed, over-bed table and visitor chairs." width="2400" height="1350" fetchPriority="high" />
+        <img src={`${import.meta.env.BASE_URL}img/hero-room.jpg`} alt="A single inpatient bedroom with a window to trees, a bed, over-bed table and visitor chairs." width="2400" height="1350" fetchPriority="high" />
         <span className="grain" aria-hidden="true" />
       </motion.figure>
     </section>

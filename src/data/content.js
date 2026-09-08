@@ -44,7 +44,7 @@ export const iteration = {
   title: 'One shared language across every project',
   body: 'Guidance designed to evolve with healthcare. Flexible resources that respond to changing models of care, clinical practice and technology—helping facilities remain fit for purpose now and into the future.',
   cta: 'Watch how the AusHFG are applied',
-  image: '/img/illus-workflow.jpg',
+  image: `${import.meta.env.BASE_URL}img/illus-workflow.jpg`,
 }
 
 export const howItWorks = {
@@ -103,7 +103,7 @@ export const news = {
   eyebrow: 'Stay up-to-date',
   title: 'News',
   cta: 'View all News & Updates',
-  image: '/img/illus-news.png',
+  image: `${import.meta.env.BASE_URL}img/illus-news.png`,
   items: [
     { date: 'August 25, 2026', kind: 'Content update', title: 'HPU 170 Cardiac Investigation Unit' },
     { date: 'August 5, 2026', kind: 'Content update', title: 'HPU 136 Mental Health Inpatient Unit – Subacute and Non-Acute (MHIPU-SANA)' },
