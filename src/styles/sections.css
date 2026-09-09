@@ -520,8 +520,9 @@
   transform-origin: bottom center;
 }
 .hiw__vline--down {
-  top: var(--line-y);
-  height: 322px;
+  /* resumes below the resource label (diamond 15 + gap 19 + label 32 + 14 clearance) */
+  top: calc(var(--line-y) + 80px);
+  height: 242px;
   transform-origin: top center;
 }
 
