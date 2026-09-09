@@ -10,7 +10,8 @@ export const nav = [
 export const hero = {
   title: 'Evidence-based guidance for better health facilities',
   body:
-    'Practical planning, design and data resources that help teams across Australia and New Zealand create safe, efficient and future-ready healthcare environments. Search AusHFG resources today.',
+    'Practical planning, design and data resources that help teams across Australia and New Zealand create safe, efficient and future-ready healthcare environments.',
+  bodyCta: 'Search AusHFG resources today.',
   searchPlaceholder: 'Search guidelines, planning units, rooms and resources',
 }
 

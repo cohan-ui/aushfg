@@ -23,9 +23,10 @@ export default function Hero() {
           <Button variant="outline">Learn about AusHFG</Button>
         </motion.div>
 
-        <motion.p className="body hero__body" {...item(0.2)}>
-          {hero.body}
-        </motion.p>
+        <motion.div className="body hero__body" {...item(0.2)}>
+          <p>{hero.body}</p>
+          <p>{hero.bodyCta}</p>
+        </motion.div>
 
         <motion.form
           className="hero__search"
@@ -37,8 +38,11 @@ export default function Hero() {
             Search AusHFG
           </label>
           <input id="hero-search" type="search" placeholder={hero.searchPlaceholder} />
-          <button type="submit" className="hero__search-btn" aria-label="Search">
-            <Search />
+          <button type="submit" className="hero__search-btn">
+            <span className="hero__search-icon" aria-hidden="true">
+              <Search />
+            </span>
+            <span className="hero__search-label">Search</span>
           </button>
         </motion.form>
       </div>
