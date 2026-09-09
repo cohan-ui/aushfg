@@ -153,6 +153,9 @@ function PinnedVersion() {
                 <span className="eyebrow">{data.marker}</span>
               </motion.div>
 
+              {/* solid connector: grows from the first resource to the entry line as the pathway is travelled */}
+              <Connector offset={offset} markerX={markerX} spacing={spacing} opacity={labelOpacity} />
+
               {/* moving nodes */}
               {STEPS.map((s, i) => (
                 <Node key={s.id} i={i} step={s} offset={offset} markerX={markerX} spacing={spacing} active={active === i} onJump={() => jumpTo(i)} opacity={labelOpacity} />
@@ -203,6 +206,12 @@ function PinnedVersion() {
   )
 }
 
+function Connector({ offset, markerX, spacing, opacity }) {
+  const left = useTransform(offset, (o) => markerX - o * spacing)
+  const width = useTransform(offset, (o) => o * spacing)
+  return <motion.div className="hiw__connector" style={{ left, width, opacity }} aria-hidden="true" />
+}
+
 const mixHex = (c1, c2, t) => {
   const h = (c) => [1, 3, 5].map((k) => parseInt(c.slice(k, k + 2), 16))
   const a = h(c1)
@@ -218,7 +227,8 @@ const mixHex = (c1, c2, t) => {
 function Node({ i, step, offset, markerX, spacing, active, onJump, opacity }) {
   const x = useTransform(offset, (o) => markerX + (i - o) * spacing)
   const near = useTransform(offset, (o) => Math.max(0, 1 - Math.abs(i - o) / 0.45))
-  const fill = useTransform(near, (t) => mixHex('#aec7ce', '#3a6b7a', t))
+  // once a resource has crossed the line it stays "unlocked" (teal); ahead of the line it warms as it approaches
+  const fill = useTransform(offset, (o) => (o >= i ? '#3a6b7a' : mixHex('#aec7ce', '#3a6b7a', Math.max(0, 1 - (i - o) / 0.45))))
   const scale = useTransform(near, [0, 1], [0.86, 1])
   const color = useTransform(near, (t) => mixHex('#999999', '#3a6b7a', t))
   return (

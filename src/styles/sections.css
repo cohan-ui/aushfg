@@ -510,6 +510,15 @@
   transform-origin: left center;
 }
 
+.hiw__connector {
+  position: absolute;
+  top: var(--line-y);
+  height: 2px;
+  margin-top: -1px;
+  background: var(--teal);
+  z-index: 1;
+}
+
 .hiw__vline {
   position: absolute;
   left: var(--marker-x);
