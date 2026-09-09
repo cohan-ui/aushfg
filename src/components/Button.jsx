@@ -10,7 +10,12 @@ export default function Button({ variant = 'primary', size = 'sm', icon = false,
   const Tag = rest.onClick && !href ? 'button' : 'a'
   return (
     <Tag className={cls} href={Tag === 'a' ? href : undefined} {...rest}>
-      {icon && <ArrowRight className="btn__icon" />}
+      {icon && (
+        <span className="btn__icon" aria-hidden="true">
+          <ArrowRight className="btn__icon-a" />
+          <ArrowRight className="btn__icon-b" />
+        </span>
+      )}
       <span>{children}</span>
     </Tag>
   )
