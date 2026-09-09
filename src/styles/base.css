@@ -11,6 +11,7 @@ html {
 
 body {
   margin: 0;
+  position: relative;
   font-family: var(--font);
   font-size: var(--t-ui);
   line-height: 1.5;
@@ -68,6 +69,13 @@ p {
 }
 
 /* Layout ------------------------------------------------------------------ */
+
+/* page content paints above the fixed reveal footer */
+main {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+}
 
 .container {
   width: min(var(--container), 100% - 2 * var(--gutter));

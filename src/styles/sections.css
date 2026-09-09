@@ -1214,8 +1214,19 @@
 
 /* Footer ---------------------------------------------------------------------- */
 
-.footer {
+.footer-reveal {
+  position: relative;
   margin-top: clamp(64px, 5vw + 24px, 96px);
+  clip-path: inset(0);
+  /* until measured, keep normal flow so nothing collapses */
+  min-height: 1px;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
   padding: 96px 0 40px;
   background: var(--forest);
   color: #fff;
