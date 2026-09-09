@@ -213,7 +213,8 @@ function Node({ i, step, offset, markerX, spacing, active, onJump, opacity }) {
     <motion.div className={`hiw__node ${active ? 'is-active' : ''}`} style={{ x, opacity }}>
       <motion.span
         className="hiw__diamond"
-        animate={{ backgroundColor: active ? 'var(--teal)' : 'var(--mist)', scale: active ? 1 : 0.86 }}
+        initial={{ rotate: 45 }}
+        animate={{ rotate: 45, backgroundColor: active ? 'var(--teal)' : 'var(--mist)', scale: active ? 1 : 0.86 }}
         transition={{ duration: 0.45, ease }}
         aria-hidden="true"
       />

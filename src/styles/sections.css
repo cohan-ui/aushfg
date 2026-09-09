@@ -494,16 +494,19 @@
   height: 2px;
   margin-top: -1px;
 }
+.hiw__hline--before,
+.hiw__hline--after {
+  /* dashed grey pathway: 6px dash, 6px gap */
+  background: repeating-linear-gradient(90deg, #a3a3a3 0 6px, transparent 6px 12px);
+}
 .hiw__hline--before {
   left: -300px;
   width: calc(var(--marker-x) + 300px);
-  background: var(--teal);
   transform-origin: right center;
 }
 .hiw__hline--after {
   left: var(--marker-x);
   right: -300px;
-  background: var(--cream-2);
   transform-origin: left center;
 }
 
