@@ -93,7 +93,6 @@ function PinnedVersion() {
   const tlOpacity = useTransform(p, (v) => lerp(v, [P.linesIn[0], P.linesIn[0] + 0.06], [0, 1]))
   const hLine = useTransform(p, (v) => lerp(v, P.linesIn, [0, 1]))
   const vLine = useTransform(p, (v) => lerp(v, [P.linesIn[0] + 0.05, P.linesIn[1] + 0.03], [0, 1]))
-  const markerScale = useTransform(p, (v) => lerp(v, [P.linesIn[0] + 0.08, P.linesIn[1]], [0, 1]))
   const labelOpacity = useTransform(p, (v) => lerp(v, [P.linesIn[1] - 0.04, P.linesIn[1] + 0.04], [0, 1]))
 
   /* the moving pathway */
@@ -154,11 +153,6 @@ function PinnedVersion() {
                 <span className="eyebrow">{data.marker}</span>
               </motion.div>
 
-              {/* fixed marker */}
-              <motion.div className="hiw__marker" style={{ scale: markerScale }} aria-hidden="true">
-                <span className="hiw__diamond hiw__diamond--active" />
-              </motion.div>
-
               {/* moving nodes */}
               {STEPS.map((s, i) => (
                 <Node key={s.id} i={i} step={s} offset={offset} markerX={markerX} spacing={spacing} active={active === i} onJump={() => jumpTo(i)} opacity={labelOpacity} />
@@ -209,20 +203,30 @@ function PinnedVersion() {
   )
 }
 
+const mixHex = (c1, c2, t) => {
+  const h = (c) => [1, 3, 5].map((k) => parseInt(c.slice(k, k + 2), 16))
+  const a = h(c1)
+  const b = h(c2)
+  return `rgb(${a.map((v, k) => Math.round(v + (b[k] - v) * t)).join(', ')})`
+}
+
+/**
+ * A resource on the pathway: diamond + label travel together. Its "activeness"
+ * is continuous — a function of its distance from the entry line — so it warms
+ * from mist to teal as it crosses the marker and cools again as it leaves.
+ */
 function Node({ i, step, offset, markerX, spacing, active, onJump, opacity }) {
   const x = useTransform(offset, (o) => markerX + (i - o) * spacing)
+  const near = useTransform(offset, (o) => Math.max(0, 1 - Math.abs(i - o) / 0.45))
+  const fill = useTransform(near, (t) => mixHex('#aec7ce', '#3a6b7a', t))
+  const scale = useTransform(near, [0, 1], [0.86, 1])
+  const color = useTransform(near, (t) => mixHex('#999999', '#3a6b7a', t))
   return (
     <motion.div className={`hiw__node ${active ? 'is-active' : ''}`} style={{ x, opacity }}>
-      <motion.span
-        className="hiw__diamond"
-        initial={{ rotate: 45 }}
-        animate={{ rotate: 45, backgroundColor: active ? 'var(--teal)' : 'var(--mist)', scale: active ? 1 : 0.86 }}
-        transition={{ duration: 0.45, ease }}
-        aria-hidden="true"
-      />
-      <button type="button" className="hiw__name" onClick={onJump} aria-pressed={active}>
+      <motion.span className="hiw__diamond" style={{ backgroundColor: fill, scale, rotate: 45 }} aria-hidden="true" />
+      <motion.button type="button" className="hiw__name" style={{ color }} onClick={onJump} aria-pressed={active}>
         {step.name}
-      </button>
+      </motion.button>
     </motion.div>
   )
 }

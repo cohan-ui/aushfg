@@ -544,17 +544,6 @@
   background: var(--teal);
 }
 
-.hiw__marker {
-  position: absolute;
-  top: var(--line-y);
-  left: var(--marker-x);
-  width: 42px;
-  height: 42px;
-  margin: -21px 0 0 -21px;
-  display: grid;
-  place-items: center;
-  z-index: 2;
-}
 
 .hiw__diamond {
   position: relative;
@@ -590,23 +579,20 @@
 .hiw__node .hiw__diamond {
   margin-top: -15px;
 }
-.hiw__node.is-active .hiw__diamond {
-  opacity: 0; /* the fixed marker takes over visually while a node rests on it */
-}
 
 .hiw__name {
   margin-top: 19px;
   font-size: var(--t-lead);
   line-height: 32px;
   white-space: nowrap;
-  color: var(--grey-400);
-  transition: color 0.4s var(--ease-out), font-weight 0.2s;
+  transition: font-weight 0.2s;
 }
 .hiw__name:hover {
-  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--mist);
 }
 .hiw__node.is-active .hiw__name {
-  color: var(--teal);
   font-weight: 600;
 }
 
