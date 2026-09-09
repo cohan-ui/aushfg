@@ -1217,10 +1217,12 @@
 .footer {
   margin-top: clamp(64px, 5vw + 24px, 96px);
   padding: 96px 0 40px;
-  background: var(--mint);
-  color: var(--forest);
-  --logo-a: #13361a;
-  --logo-b: #ffffff;
+  background: var(--forest);
+  color: #fff;
+  --logo-a: #ffffff;
+  --logo-b: #aad5b2;
+  --footer-line: rgba(255, 255, 255, 0.14);
+  --footer-muted: rgba(255, 255, 255, 0.72);
 }
 
 .footer__top {
@@ -1228,24 +1230,30 @@
   grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
   gap: 64px;
   padding-bottom: 72px;
-  border-bottom: 1px solid rgba(19, 54, 26, 0.18);
+  border-bottom: 1px solid var(--footer-line);
 }
 
 .footer__brand {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 20px;
+}
+.footer__logo {
+  align-self: flex-start;
+  width: auto;
 }
 .footer__name {
   font-size: var(--t-lead);
   line-height: 1.25;
   margin-top: 12px;
   max-width: 300px;
+  color: #fff;
 }
 .footer__intro {
   font-size: var(--t-ui);
   line-height: 26px;
-  color: rgba(19, 54, 26, 0.85);
+  color: var(--footer-muted);
   max-width: 340px;
 }
 
@@ -1258,6 +1266,7 @@
   font-size: var(--t-ui);
   line-height: 24px;
   font-weight: 600;
+  color: var(--mint);
   margin: 0 0 18px;
 }
 .footer__col ul {
@@ -1268,13 +1277,14 @@
 .footer__link {
   font-size: var(--t-ui);
   line-height: 24px;
-  color: rgba(19, 54, 26, 0.85);
+  color: var(--footer-muted);
   transition: color 0.25s var(--ease-out);
 }
 .footer__link:hover {
-  color: var(--forest);
+  color: #fff;
   text-decoration: underline;
   text-underline-offset: 4px;
+  text-decoration-color: var(--mint);
 }
 
 .footer__signpost {
@@ -1283,17 +1293,26 @@
   justify-content: space-between;
   gap: 32px;
   padding: 40px 0;
-  border-bottom: 1px solid rgba(19, 54, 26, 0.18);
+  border-bottom: 1px solid var(--footer-line);
 }
 .footer__signpost-title {
   font-size: var(--t-lead);
   line-height: 1.2;
+  color: #fff;
 }
 .footer__signpost-body {
   margin-top: 6px;
   font-size: var(--t-ui);
   line-height: 24px;
-  color: rgba(19, 54, 26, 0.85);
+  color: var(--footer-muted);
+}
+.footer .btn--primary {
+  background: var(--mint);
+  color: var(--forest);
+}
+.footer .btn--primary:hover {
+  background: #fff;
+  color: var(--forest);
 }
 
 .footer__bottom {
@@ -1305,7 +1324,7 @@
 .footer__custodian {
   font-size: var(--t-caption);
   line-height: 20px;
-  color: rgba(19, 54, 26, 0.7);
+  color: rgba(255, 255, 255, 0.55);
 }
 .footer__utility {
   display: flex;
@@ -1315,6 +1334,7 @@
   gap: 12px 32px;
   font-size: var(--t-caption);
   line-height: 20px;
+  color: var(--footer-muted);
 }
 .footer__utility ul {
   display: flex;
@@ -1322,8 +1342,12 @@
   gap: 24px;
 }
 .footer__utility a:hover {
+  color: #fff;
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+.footer :focus-visible {
+  outline-color: var(--mint);
 }
 
 @media (max-width: 1000px) {
