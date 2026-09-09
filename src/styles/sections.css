@@ -539,16 +539,6 @@
   height: 2px;
   background: var(--teal);
 }
-.hiw__hint {
-  font-size: var(--t-caption);
-  line-height: 32px;
-  color: var(--grey-600);
-  text-transform: none;
-  letter-spacing: 0;
-  margin-left: 8px;
-  padding-left: 12px;
-  border-left: 1px solid var(--cream-2);
-}
 
 .hiw__marker {
   position: absolute;

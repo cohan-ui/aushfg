@@ -150,7 +150,6 @@ function PinnedVersion() {
               <motion.div className="hiw__entry" style={{ opacity: labelOpacity }}>
                 <span className="hiw__tick" />
                 <span className="eyebrow">{data.marker}</span>
-                <span className="hiw__hint">{data.markerHint}</span>
               </motion.div>
 
               {/* fixed marker */}
@@ -238,9 +237,7 @@ function StackedVersion() {
             <p className="body lead-in">{data.body}</p>
           </Reveal>
           <div className="hiw__stack-list">
-            <p className="eyebrow hiw__stack-marker">
-              {data.marker} — <span className="hiw__hint">{data.markerHint}</span>
-            </p>
+            <p className="eyebrow hiw__stack-marker">{data.marker}</p>
             {STEPS.map((s, i) => (
               <Reveal as="article" key={s.id} className="hiw__stack-item" delay={i * 0.05}>
                 <div className="hiw__stack-rail" aria-hidden="true">

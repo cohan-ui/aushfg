@@ -78,7 +78,6 @@ export const howItWorks = {
   title: 'Connected guidance,\nwherever you begin',
   body: 'AusHFG resources work together across the planning and design process.',
   marker: 'Your entry point',
-  markerHint: 'Start wherever you need',
   steps: [
     {
       id: 'parts',
