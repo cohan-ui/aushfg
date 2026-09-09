@@ -435,7 +435,7 @@
 
 .hiw {
   position: relative;
-  height: 520vh;
+  height: 600vh;
   margin-top: clamp(64px, 5vw + 24px, 96px);
 }
 

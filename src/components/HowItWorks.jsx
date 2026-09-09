@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from 'motion/react'
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'motion/react'
 import Button from './Button.jsx'
 import Reveal from './Reveal.jsx'
 import { howItWorks as data } from '../data/content.js'
@@ -16,7 +16,7 @@ const P = {
   track: [0.36, 0.94],      // resources travel through the marker
 }
 
-const DWELL = 0.3 // each node rests on the marker for this share of a segment (either side)
+const DWELL = 0.22 // each node rests on the marker for this share of a segment (either side)
 
 /** Continuous node offset 0..N-1 with a rest at every integer. */
 function dwell(t) {
@@ -80,7 +80,9 @@ function PinnedVersion() {
   const markerX = dims.w * 0.172 // (444 − 224) / 1280 in the Figma frame
   const spacing = Math.max(dims.w * 0.25, 240) // 320 / 1280
 
-  const { scrollYProgress: p } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] })
+  const { scrollYProgress: raw } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] })
+  // Spring-smooth the scroll input so every scroll-linked move eases in and out instead of tracking the wheel 1:1
+  const p = useSpring(raw, { stiffness: 55, damping: 18, mass: 0.9, restDelta: 0.0002 })
 
   /* header: fade in centred, then rise to the top */
   const headerTop = useTransform(p, (v) => lerp(v, P.headerUp, [dims.panelH / 2 - dims.headerH / 2, 56]))
