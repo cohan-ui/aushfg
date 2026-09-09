@@ -16,6 +16,7 @@ const P = {
   track: [0.36, 0.94],      // resources travel through the marker
 }
 
+const HEADER_REST = 128 // px from panel top once the header has risen — clears the sticky nav
 const DWELL = 0.22 // each node rests on the marker for this share of a segment (either side)
 
 /** Continuous node offset 0..N-1 with a rest at every integer. */
@@ -85,7 +86,7 @@ function PinnedVersion() {
   const p = useSpring(raw, { stiffness: 55, damping: 18, mass: 0.9, restDelta: 0.0002 })
 
   /* header: fade in centred, then rise to the top */
-  const headerTop = useTransform(p, (v) => lerp(v, P.headerUp, [dims.panelH / 2 - dims.headerH / 2, 56]))
+  const headerTop = useTransform(p, (v) => lerp(v, P.headerUp, [dims.panelH / 2 - dims.headerH / 2, HEADER_REST]))
   const headerOpacity = useTransform(p, (v) => lerp(v, P.introIn, [0, 1]))
   const bodyOpacity = useTransform(p, (v) => lerp(v, P.headerUp, [1, 0.72]))
 
