@@ -177,13 +177,19 @@
 }
 .glass--green {
   --orb: url('/img/orbs-green.jpg');
-  --orb-pos: 20% 70%;
+  --orb-pos: 30% 60%;
   --orb-rot: 60deg;
+  --orb-size: 88%;
+  --orb-blur: 34px;
+  --orb-opacity: 0.95;
 }
 .glass--blue {
   --orb: url('/img/orbs-blue.jpg');
-  --orb-pos: 70% 40%;
+  --orb-pos: 65% 45%;
   --orb-rot: -30deg;
+  --orb-size: 88%;
+  --orb-blur: 34px;
+  --orb-opacity: 0.95;
 }
 .glass--base {
   --orb: url('/img/orbs-base.jpg');
