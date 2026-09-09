@@ -357,8 +357,7 @@
   min-height: var(--card-h, 521px);
   border-radius: var(--radius);
   overflow: hidden;
-  transform-origin: 50% 0;
-  will-change: transform, background-color;
+  will-change: background-color;
 }
 .principles__track .principles__card + .principles__card {
   margin-top: calc(100vh - var(--card-h, 521px));

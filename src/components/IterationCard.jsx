@@ -85,13 +85,12 @@ function StackCard({ card, i, refs, vh }) {
   // content fades late in the travel, once the incoming card is actually covering it
   const contentOpacity = useTransform(cover1, [0.55, 0.95], [1, 0])
   const contentY = useTransform(cover1, [0.4, 1], [0, -20])
-  const scale = useTransform(cover1, [0.5, 1], [1, 0.985])
 
   return (
     <motion.article
       ref={self}
       className="principles__card"
-      style={{ top: stickTop(i, vh), zIndex: i + 1, background, scale }}
+      style={{ top: stickTop(i, vh), zIndex: i + 1, background }}
     >
       <motion.div className="principles__content" style={{ opacity: contentOpacity, y: contentY }}>
         <CardBody card={card} />
