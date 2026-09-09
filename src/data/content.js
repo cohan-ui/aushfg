@@ -76,7 +76,7 @@ export const principles = [
 export const howItWorks = {
   eyebrow: 'How it works',
   title: 'Connected guidance,\nwherever you begin',
-  body: 'AusHFG resources complement one another across planning, design and delivery. There is no fixed starting point — you can begin with the guidance most relevant to your project and connect with other resources as needed.',
+  body: 'AusHFG resources complement one another across planning, design and delivery. There is no fixed starting point. You can begin with the guidance most relevant to your project and connect with other resources as needed.',
   marker: 'Your entry point',
   steps: [
     {
