@@ -31,7 +31,7 @@ function useMedia(q) {
 }
 
 export default function IterationCard() {
-  const simple = useMedia('(max-width: 900px), (prefers-reduced-motion: reduce)')
+  const simple = useMedia('(prefers-reduced-motion: reduce)')
   return simple ? <FlowVersion /> : <StackVersion />
 }
 
@@ -40,17 +40,28 @@ export default function IterationCard() {
 function StackVersion() {
   const refs = useRef(principles.map(() => ({ current: null }))).current
   const [vh, setVh] = useState(() => (typeof window !== 'undefined' ? window.innerHeight : 1000))
+  const [cardH, setCardH] = useState(CARD_H)
   useEffect(() => {
     const fn = () => setVh(window.innerHeight)
     window.addEventListener('resize', fn)
     return () => window.removeEventListener('resize', fn)
   }, [])
+  // cards are a fixed 521 on desktop but grow on narrow screens — measure so the stack maths follows
+  useEffect(() => {
+    const els = refs.map((r) => r.current).filter(Boolean)
+    if (!els.length) return
+    const measure = () => setCardH(Math.max(...els.map((e) => e.offsetHeight)))
+    const ro = new ResizeObserver(measure)
+    els.forEach((e) => ro.observe(e))
+    measure()
+    return () => ro.disconnect()
+  }, [refs])
 
   return (
-    <section className="section principles" style={{ '--n': N, '--peek': `${PEEK}px`, '--card-h': `${CARD_H}px` }}>
+    <section className="section principles" style={{ '--n': N, '--peek': `${PEEK}px`, '--card-h': `${cardH}px` }}>
       <div className="container principles__track">
         {principles.map((card, i) => (
-          <StackCard key={card.id} card={card} i={i} refs={refs} vh={vh} />
+          <StackCard key={card.id} card={card} i={i} refs={refs} vh={vh} cardH={cardH} />
         ))}
         <div className="principles__end" aria-hidden="true" />
       </div>
@@ -58,17 +69,17 @@ function StackVersion() {
   )
 }
 
-/** The y at which card k rests once stuck. */
-const stickTop = (k, vh) => vh / 2 - CARD_H / 2 + k * PEEK
+/** The y at which card k rests once stuck — centred, or pinned near the top if the card is taller than the viewport allows. */
+const stickTop = (k, vh, cardH) => Math.max(24, vh / 2 - cardH / 2) + k * PEEK
 
-function StackCard({ card, i, refs, vh }) {
+function StackCard({ card, i, refs, vh, cardH }) {
   const self = refs[i]
   const next = refs[Math.min(i + 1, N - 1)]
   const after = refs[Math.min(i + 2, N - 1)]
 
   // progress of the following card travelling from the bottom of the viewport to its resting point
-  const { scrollYProgress: c1 } = useScroll({ target: next, offset: ['start end', `start ${stickTop(i + 1, vh)}px`] })
-  const { scrollYProgress: c2 } = useScroll({ target: after, offset: ['start end', `start ${stickTop(i + 2, vh)}px`] })
+  const { scrollYProgress: c1 } = useScroll({ target: next, offset: ['start end', `start ${stickTop(i + 1, vh, cardH)}px`] })
+  const { scrollYProgress: c2 } = useScroll({ target: after, offset: ['start end', `start ${stickTop(i + 2, vh, cardH)}px`] })
   const cover1 = useTransform(c1, (v) => (i + 1 < N ? v : 0))
   const cover2 = useTransform(c2, (v) => (i + 2 < N ? v : 0))
 
@@ -90,7 +101,7 @@ function StackCard({ card, i, refs, vh }) {
     <motion.article
       ref={self}
       className="principles__card"
-      style={{ top: stickTop(i, vh), zIndex: i + 1, background }}
+      style={{ top: stickTop(i, vh, cardH), zIndex: i + 1, background }}
     >
       <motion.div className="principles__content" style={{ opacity: contentOpacity, y: contentY }}>
         <CardBody card={card} />

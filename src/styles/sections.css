@@ -358,7 +358,7 @@
 .principles__card {
   position: sticky;
   isolation: isolate;
-  min-height: var(--card-h, 521px);
+  min-height: 521px;
   border-radius: var(--radius);
   overflow: hidden;
   will-change: background-color;
@@ -373,7 +373,7 @@
   display: grid;
   grid-template-columns: minmax(0, 536px) minmax(0, 1fr);
   gap: 32px;
-  min-height: var(--card-h, 521px);
+  min-height: 521px;
   align-items: center;
 }
 
@@ -401,7 +401,7 @@
   align-self: center;
   justify-self: end;
   width: min(100%, 624px);
-  height: var(--card-h, 521px);
+  height: 521px;
   padding: 24px 32px 24px 0;
   display: flex;
   align-items: center;
@@ -412,6 +412,38 @@
   object-fit: contain;
   border-radius: 16px;
   mix-blend-mode: multiply;
+}
+
+/* narrow: image first, smaller; the stack keeps working */
+@media (max-width: 900px) {
+  .principles__card,
+  .principles__content {
+    min-height: 0;
+  }
+  .principles__content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+  }
+  .principles__figure {
+    order: -1;
+    justify-self: start;
+    width: 72%;
+    max-width: 420px;
+    height: auto;
+    max-height: 240px;
+    padding: 28px 0 0 28px;
+  }
+  .principles__figure img {
+    height: auto;
+    max-height: 212px;
+    object-fit: contain;
+    object-position: left center;
+  }
+  .principles__text {
+    padding: 8px 28px 32px;
+    gap: 12px;
+  }
 }
 
 /* flow fallback */
