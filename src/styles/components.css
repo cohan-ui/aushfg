@@ -23,10 +23,12 @@
 .btn--primary {
   background: var(--forest);
   color: var(--mint);
+  box-shadow: inset 0 0 0 1px var(--forest);
 }
 .btn--primary:hover {
-  background: #0d2712;
-  color: #fff;
+  background: #fff;
+  color: var(--forest);
+  box-shadow: inset 0 0 0 1px var(--forest);
 }
 
 .btn--outline {
