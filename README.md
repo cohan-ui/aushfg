@@ -20,5 +20,5 @@ npm run preview
 - `public/img/` — optimised assets from the .fig. `jurisdiction-logos.jpg` is exported but not placed.
 
 ## Notes
-- "03 REGULAR INTERATION" in the file was corrected to "Regular iteration".
+- Principles stack (IterationCard.jsx): cards 01 and 02 use placeholder illustrations — export Figma nodes 265:13108 and 265:13119 from *AusHFG Concepts Work* and drop them into `public/img/`.
 - Timeline copy for HPU / Standard Components / BIM steps is placeholder — only AusHFG Parts had copy in the file.

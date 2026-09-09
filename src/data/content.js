@@ -40,13 +40,40 @@ export const entryCards = [
   },
 ]
 
-export const iteration = {
-  eyebrow: '03 Regular iteration',
-  title: 'One shared language across every project',
-  body: 'Guidance designed to evolve with healthcare. Flexible resources that respond to changing models of care, clinical practice and technology—helping facilities remain fit for purpose now and into the future.',
-  cta: 'Watch how the AusHFG are applied',
-  image: `${import.meta.env.BASE_URL}img/illus-workflow.jpg`,
-}
+export const principles = [
+  {
+    id: 'evidence',
+    eyebrow: '01 Evidence-led',
+    title: 'Decisions grounded in evidence and experience',
+    body: 'Developed through research, clinical expertise, consumer input, relevant standards and experience from real health infrastructure projects.',
+    cta: 'Watch how the AusHFG are developed',
+    ctaTone: 'teal',
+    // TODO: replace with export of Figma node 265:13108 ("image 34")
+    image: `${import.meta.env.BASE_URL}img/illus-news.png`,
+    imageAlt: 'Illustration of research charts, floor plans and consultation feeding into a completed room layout.',
+  },
+  {
+    id: 'aligned',
+    eyebrow: '02 Industry-aligned',
+    title: 'One shared language across every project',
+    body: 'A common reference point that helps government, healthcare, planning, design and construction teams work with greater clarity and consistency.',
+    cta: 'About the Australasian Health Infrastructure Alliance',
+    ctaTone: 'forest',
+    // TODO: replace with export of Figma node 265:13119 ("image 35")
+    image: `${import.meta.env.BASE_URL}img/illus-workflow.jpg`,
+    imageAlt: 'Illustration of planning documents connected across a map of Australia and New Zealand.',
+  },
+  {
+    id: 'future',
+    eyebrow: '03 Future ready',
+    title: 'Guidance designed to evolve with healthcare',
+    body: 'Flexible resources that respond to changing models of care, clinical practice and technology—helping facilities remain fit for purpose now and into the future.',
+    cta: 'Watch how the AusHFG are applied',
+    ctaTone: 'teal',
+    image: `${import.meta.env.BASE_URL}img/illus-workflow.jpg`,
+    imageAlt: 'Three connected floor plans progressing from outline to completed room layout.',
+  },
+]
 
 export const howItWorks = {
   eyebrow: 'How it works',

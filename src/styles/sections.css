@@ -336,87 +336,100 @@
   }
 }
 
-/* Iteration (stacked cards) -------------------------------------------------- */
+/* Principles — scroll-stacking cards ------------------------------------------ */
 
-.stack {
+.principles {
+  --stack-extra: 24vh; /* breathing room after the last card lands */
+}
+
+.principles__track {
   position: relative;
-  padding-top: 47px; /* two peeking layers at 23 + 24px */
+}
+/* Sticky is constrained by the containing block's *content* box, so the settle
+   room after the last card must be a real element, not padding. */
+.principles__end {
+  height: var(--stack-extra);
 }
 
-.stack__layer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 200px;
-  border-radius: var(--radius);
-}
-.stack__layer--back {
-  top: 0;
-  background: var(--sage-3);
-}
-.stack__layer--mid {
-  top: 23px;
-  background: var(--sage-2);
-}
-
-.stack__front {
-  position: relative;
+.principles__card {
+  position: sticky;
   isolation: isolate;
+  min-height: var(--card-h, 521px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transform-origin: 50% 0;
+  will-change: transform, background-color;
+}
+.principles__track .principles__card + .principles__card {
+  margin-top: calc(100vh - var(--card-h, 521px));
+}
+
+.principles__content {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 536px) minmax(0, 1fr);
   gap: 32px;
-  min-height: 521px;
-  border-radius: var(--radius);
-  background: var(--sage-1);
-  overflow: hidden;
+  min-height: var(--card-h, 521px);
+  align-items: center;
 }
 
-.stack__text {
+.principles__text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
   gap: 16px;
-  padding: 56px 32px;
+  padding: 56px 0 56px 32px;
 }
-.stack__text .h3 {
+.principles__text .h3 {
   max-width: 504px;
 }
-.stack__text .body {
+.principles__text .body {
   max-width: 504px;
   margin-bottom: 8px;
 }
+.principles__text .btn {
+  white-space: normal;
+  text-align: left;
+}
 
-.stack__figure {
+.principles__figure {
   margin: 0;
   align-self: center;
-  padding: 27px 43px 27px 0;
+  justify-self: end;
+  width: min(100%, 624px);
+  height: var(--card-h, 521px);
+  padding: 24px 32px 24px 0;
+  display: flex;
+  align-items: center;
 }
-.stack__figure img {
+.principles__figure img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
   border-radius: 16px;
   mix-blend-mode: multiply;
 }
 
-@media (max-width: 900px) {
-  .stack__front {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .stack__text,
-  .stack__figure {
-    min-width: 0;
-  }
-  .stack__text {
-    padding: 40px 28px 0;
-  }
-  .stack__text .btn {
-    white-space: normal;
-    text-align: left;
-  }
-  .stack__figure {
-    padding: 0 28px 28px;
-  }
+/* flow fallback */
+.principles__flow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.principles--flow .principles__card {
+  position: relative;
+}
+.principles--flow .principles__content {
+  grid-template-columns: minmax(0, 1fr);
+}
+.principles--flow .principles__text {
+  padding: 40px 28px 0;
+}
+.principles--flow .principles__figure {
+  justify-self: stretch;
+  width: 100%;
+  padding: 0 28px 28px;
 }
 
 /* How it works — pinned scroll timeline -------------------------------------- */
